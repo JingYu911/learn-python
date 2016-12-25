@@ -1,8 +1,9 @@
+'''一个简单的美女图片爬虫'''
 from urllib.request import urlopen
 from bs4 import BeautifulSoup
 import re,os
 
-''' ============================================================获取item的页数=============================================='''
+''' =======================================================获取套图的页数=============================================='''
 def getPages(url):
     html = urlopen(url)
     bsObj = BeautifulSoup(html, "lxml")
@@ -14,7 +15,7 @@ def getPages(url):
     lastPage = page[-2]
     return lastPage
 
-''' ============================================================保存图片=============================================='''
+''' =========================================================保存图片=============================================='''
 def SavePictures(imageUrl, imageName):
 
     web = urlopen(imageUrl)
@@ -31,7 +32,7 @@ def SavePictures(imageUrl, imageName):
     File.close()
 
 
-'''============================================================获取页面中图片的URL和名称=============================================='''
+'''================================================获取页面中图片的URL和名称=============================================='''
 def GetItemPictures(url):
     html = urlopen(url)
     bsObj = BeautifulSoup(html, "lxml")
@@ -57,13 +58,13 @@ def GetItemPictures(url):
 
         imageUrl = image["src"]
 
-        SavePictures(imageUrl, imageName)        #调用保存函数
+        SavePictures(imageUrl, imageName)       #调用保存函数
     item = url[-9:-5]
 
-    lastPage = int(getPages(url))
+    lastPage = int(getPages(url))              #调用函数得到这套图的页数
 
 
-    for i in range(2, lastPage + 1):
+    for i in range(2, lastPage + 1):            #保存后面所有页的图片
         next = "http://www.meitulu.com/item/"+item+"_" + str(i) + ".html"
 
 
@@ -90,7 +91,7 @@ def GetItemPictures(url):
         if i==(lastPage):
             print("---------------------end----------------")
 
-''' ===================================================获取所有Item地址============================================='''
+''' ===================================================获取每套图的地址============================================='''
 def GetItems(url):
     items = set()
     html = urlopen(url)
