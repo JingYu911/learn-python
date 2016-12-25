@@ -106,7 +106,13 @@ def GetItems(url):
                 GetItemPictures(newItem)
 
 GetItems("http://www.meitulu.com/t/linlin-ailin/")             #获取全部套图
+'''
+说明一下
+找到自己喜欢的模特的介绍页 填入上个函数就可以爬取她所有的套图
+如果只喜欢其中一套图 填入下面的函数
+目前所有的图都保存在一个文件夹
 
+'''
 
 #GetItemPictures("http://www.meitulu.com/item/8744.html")      #获取一套图
 
